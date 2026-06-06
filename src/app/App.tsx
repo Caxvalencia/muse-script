@@ -41,12 +41,16 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <header>
-        <div className="brand"><span className="logo">M</span><div><h1>MuseScript</h1><p>Live coding music playground</p></div></div>
+      <div className="ambient-orb orb-one" />
+      <div className="ambient-orb orb-two" />
+      <div className="ambient-orb orb-three" />
+
+      <header className="topbar glass-surface">
+        <div className="brand"><span className="logo"><span>M</span></span><div><h1>MuseScript</h1><p>Live coding music playground</p></div></div>
         <div className="header-stats">
-          <span><i className={playback.audioActive ? "live" : ""} />{playback.audioActive ? "Audio ready" : "Audio locked"}</span>
-          <span><b>{runtimeTempo}</b> BPM</span>
-          <span><b>{activeClips}</b> active clips</span>
+          <span className="stat-pill"><i className={playback.audioActive ? "live" : ""} />{playback.audioActive ? "Audio ready" : "Audio locked"}</span>
+          <span className="stat-pill"><small>Tempo</small><b>{runtimeTempo}</b> BPM</span>
+          <span className="stat-pill"><small>Live</small><b>{activeClips}</b> clips</span>
         </div>
       </header>
 
@@ -67,9 +71,9 @@ export default function App() {
       {playback.audioError && <div className="audio-error">{playback.audioError}</div>}
 
       <main>
-        <section className="editor-panel panel">
+        <section className="editor-panel panel glass-surface">
           <div className="panel-heading">
-            <div><span className="eyebrow">SOURCE</span><h2>Composition</h2></div>
+            <div className="panel-title"><span className="panel-icon">⌁</span><div><span className="eyebrow">SOURCE</span><h2>Composition</h2></div></div>
             <div className="editor-actions">
               <div className="example-picker">
                 <select value={selectedExample} onChange={(event) => selectExample(Number(event.target.value))}>
@@ -94,7 +98,7 @@ export default function App() {
           </div>
         </section>
 
-        <section className="output-panel panel">
+        <section className="output-panel panel glass-surface">
           <nav>
             {(["compiled", "diagnostics", "ast", "help"] as Tab[]).map((item) => (
               <button className={tab === item ? "selected" : ""} onClick={() => setTab(item)} key={item}>

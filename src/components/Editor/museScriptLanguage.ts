@@ -1,16 +1,14 @@
 import {
   HighlightStyle,
   StreamLanguage,
-  StreamParser,
-  StringStream,
   syntaxHighlighting,
-  type,
 } from "@codemirror/language";
 import { EditorView } from "@codemirror/view";
 import { tags } from "@lezer/highlight";
 
 import { museScriptAutocomplete } from "./museScriptAutocomplete";
 
+import type { StreamParser, StringStream } from "@codemirror/language";
 type ExpectedToken =
   | "definition"
   | "reference"
@@ -166,26 +164,26 @@ export const museScriptLanguage = StreamLanguage.define(parser);
 
 const museScriptHighlightStyle = HighlightStyle.define([
   { tag: tags.lineComment, color: "#687080", fontStyle: "italic" },
-  { tag: tags.keyword, color: "#c792ea", fontWeight: "600" },
-  { tag: tags.definitionKeyword, color: "#ff7ab2", fontWeight: "700" },
-  { tag: tags.controlKeyword, color: "#ff9e64", fontWeight: "600" },
+  { tag: tags.keyword, color: "#c792ea", fontWeight: "300" },
+  { tag: tags.definitionKeyword, color: "#ff7ab2", fontWeight: "500" },
+  { tag: tags.controlKeyword, color: "#ff9e64", fontWeight: "300" },
   { tag: tags.propertyName, color: "#7dcfff" },
   {
     tag: tags.definition(tags.variableName),
     color: "#f5d76e",
-    fontWeight: "700",
+    fontWeight: "500",
   },
   { tag: tags.labelName, color: "#f5d76e" },
   { tag: tags.typeName, color: "#bb9af7" },
-  { tag: tags.atom, color: "#73daca", fontWeight: "600" },
+  { tag: tags.atom, color: "#73daca", fontWeight: "300" },
   { tag: tags.unit, color: "#e0af68" },
   { tag: tags.regexp, color: "#ff9e64", letterSpacing: "0.04em" },
-  { tag: tags.special(tags.keyword), color: "#2ac3de", fontWeight: "600" },
+  { tag: tags.special(tags.keyword), color: "#2ac3de", fontWeight: "300" },
   { tag: tags.className, color: "#9ece6a" },
-  { tag: tags.bool, color: "#f7768e", fontWeight: "600" },
+  { tag: tags.bool, color: "#f7768e", fontWeight: "300" },
   { tag: tags.string, color: "#9ece6a" },
   { tag: tags.number, color: "#e0af68" },
-  { tag: tags.bracket, color: "#89ddff", fontWeight: "700" },
+  { tag: tags.bracket, color: "#89ddff", fontWeight: "500" },
   { tag: tags.variableName, color: "#c0caf5" },
   { tag: tags.invalid, color: "#ff5370", textDecoration: "underline wavy" },
 ]);

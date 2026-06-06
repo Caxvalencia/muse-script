@@ -5,7 +5,7 @@ export function CompiledPreview({ song }: { song: CompiledSong }) {
     <div className="channel-list">
       {song.channels.map((channel) => (
         <div className="channel-card" key={channel.name}>
-          <div><b>{channel.name}</b><span>{channel.instrument}</span></div>
+          <div className="channel-header"><div><span className="channel-light" /><b>{channel.name}</b></div><span>{channel.instrument}</span></div>
           {channel.clips.map((clip) => (
             <div className="clip-row" key={clip.name}>
               <span className={clip.play ? "clip-playing" : ""}>{clip.play ? "▶" : "○"}</span>
