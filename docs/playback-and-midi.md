@@ -28,7 +28,8 @@ Nunca deben sonar dos versiones compiladas simultáneamente.
 
 ## Paneles
 
-- **Song**: canales, instrumentos, clips activos, patterns y subdivisiones.
+- **Song**: canales, instrumentos, volumen en dB, clips activos, patterns y
+  subdivisiones.
 - **Issues**: errores y warnings con ubicación.
 - **AST**: árbol generado por el parser.
 - **Help**: resumen de comandos.
@@ -54,4 +55,3 @@ Esos casos sí se reproducen en navegador.
 
 El source actual se guarda en `localStorage` bajo la clave
 `musescript-source`. No existe backend ni sincronización entre dispositivos.
-

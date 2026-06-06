@@ -46,6 +46,7 @@ class Parser {
     switch (token.value) {
       case "tempo": return { type: "Tempo", bpm: Number(this.consumeValue("INVALID_TEMPO", "Falta un tempo válido.").value), loc: token.loc };
       case "instrument": return { type: "Instrument", name: this.consumeValue("UNKNOWN_INSTRUMENT", "Falta el instrumento.").value, loc: token.loc };
+      case "volume": return { type: "Volume", db: Number(this.consumeValue("INVALID_VOLUME", "Falta un volumen válido.").value), loc: token.loc };
       case "play": return { type: "Play", name: this.consumeValue("INVALID_PLAY", "Falta el nombre a reproducir.").value, loc: token.loc };
       case "rest": return { type: "Rest", duration: this.consumeValue("INVALID_DURATION", "Falta la duración.").value, loc: token.loc };
       case "chord": return {

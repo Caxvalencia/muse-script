@@ -19,6 +19,7 @@ export interface CompiledClip {
 export interface CompiledChannel {
   name: string;
   instrument: string;
+  volume: number;
   clips: CompiledClip[];
 }
 

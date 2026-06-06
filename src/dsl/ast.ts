@@ -25,6 +25,11 @@ export interface InstrumentNode extends BaseNode {
   name: string;
 }
 
+export interface VolumeNode extends BaseNode {
+  type: "Volume";
+  db: number;
+}
+
 export interface ChannelNode extends BaseNode {
   type: "Channel";
   name: string;
@@ -107,6 +112,7 @@ export type ClipPropertyNode =
 export type StatementNode =
   | TempoNode
   | InstrumentNode
+  | VolumeNode
   | ChannelNode
   | ClipNode
   | PatternNode

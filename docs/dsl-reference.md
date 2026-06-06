@@ -41,6 +41,19 @@ Instrumentos soportados:
 Un instrumento global afecta al canal principal. Dentro de `channel`, afecta
 solo a ese canal.
 
+## Volumen
+
+```txt
+channel bass {
+  instrument FMSynth
+  volume -14
+}
+```
+
+`volume` controla la ganancia del canal en decibelios. El rango válido es
+`-60` a `12 dB`; `0` mantiene el nivel original. Puede declararse globalmente
+como valor heredado o dentro de un canal para sobrescribirlo.
+
 ## Notas
 
 ```txt
@@ -226,6 +239,7 @@ Activa un clip o pattern nombrado. Una referencia inexistente genera
 | --- | --- |
 | `INVALID_TEMPO` | BPM fuera del rango válido |
 | `UNKNOWN_INSTRUMENT` | Instrumento no soportado |
+| `INVALID_VOLUME` | Volumen fuera del rango `-60` a `12 dB` |
 | `INVALID_NOTE` | Pitch u octava inválida |
 | `INVALID_DURATION` | Duración no soportada |
 | `INVALID_LOOP` | Contador de loop inválido |

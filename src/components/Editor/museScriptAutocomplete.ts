@@ -28,7 +28,8 @@ const valueOptions = (values: string[], type: string, detail: string): Completio
 const commandOptions: Completion[] = [
   snippetCompletion("tempo ${120}", option("tempo", "keyword", "Configurar BPM", "Rango válido: 30–300 BPM.")),
   snippetCompletion("instrument ${PolySynth}", option("instrument", "keyword", "Elegir instrumento")),
-  snippetCompletion("channel ${name} {\n  instrument ${PolySynth}\n  ${}\n}", option("channel", "class", "Crear canal")),
+  snippetCompletion("volume ${-12}", option("volume", "keyword", "Configurar volumen", "Rango válido: -60 a 12 dB.")),
+  snippetCompletion("channel ${name} {\n  instrument ${PolySynth}\n  volume ${-12}\n  ${}\n}", option("channel", "class", "Crear canal")),
   snippetCompletion(
     "clip ${name} {\n  notes ${C4 E4 G4}\n  pattern ${x-x-}\n  subdiv ${8n}\n}\n\nplay ${name}",
     option("clip", "class", "Crear y reproducir clip"),
@@ -64,6 +65,9 @@ export function museScriptCompletionSource(context: CompletionContext): Completi
   }
   if (/^tempo\s*$/.test(beforeWord)) {
     return result(word.from, valueOptions(["82", "96", "104", "120", "126", "138"], "constant", "BPM sugerido"));
+  }
+  if (/^volume\s*$/.test(beforeWord)) {
+    return result(word.from, valueOptions(["-20", "-18", "-16", "-14", "-12", "-8", "-6", "-2", "0"], "constant", "Volumen en dB"));
   }
   if (/^subdiv\s*$/.test(beforeWord)) {
     return result(word.from, valueOptions(subdivisions, "constant", "Subdivisión del clip"));

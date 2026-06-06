@@ -9,7 +9,7 @@ export function CompiledPreview({ song, playing, tempo }: { song: CompiledSong; 
       <div className="channel-list">
         {song.channels.map((channel) => (
           <div className="channel-card" key={channel.name}>
-            <div className="channel-header"><div><span className="channel-light" /><b>{channel.name}</b></div><span>{channel.instrument}</span></div>
+            <div className="channel-header"><div><span className="channel-light" /><b>{channel.name}</b></div><span>{channel.instrument} · {channel.volume} dB</span></div>
             {channel.clips.map((clip) => (
               <div className="clip-row" key={clip.name}>
                 <span className={clip.play ? "clip-playing" : ""}>{clip.play ? <Play aria-hidden="true" /> : <Circle aria-hidden="true" />}</span>

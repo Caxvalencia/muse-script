@@ -21,6 +21,7 @@ export function compile(ast: ProgramNode): CompiledSong {
   const diagnostics: Diagnostic[] = [];
   let tempo = 120;
   let globalInstrument = "PolySynth";
+  let globalVolume = 0;
   const rootStatements: StatementNode[] = [];
   const channels: CompiledChannel[] = [];
   const seenChannels = new Set<string>();
@@ -48,6 +49,15 @@ export function compile(ast: ProgramNode): CompiledSong {
           `Instrumento desconocido "${statement.name}".`,
         );
       else globalInstrument = statement.name;
+    } else if (statement.type === "Volume") {
+      if (!isValidVolume(statement.db))
+        add(
+          diagnostics,
+          statement,
+          "INVALID_VOLUME",
+          "El volumen debe estar entre -60 y 12 dB.",
+        );
+      else globalVolume = statement.db;
     } else if (statement.type === "Channel") {
       if (seenChannels.has(statement.name))
         add(
@@ -62,6 +72,7 @@ export function compile(ast: ProgramNode): CompiledSong {
           statement.name,
           statement.body,
           globalInstrument,
+          globalVolume,
           diagnostics,
         ),
       );
@@ -69,10 +80,10 @@ export function compile(ast: ProgramNode): CompiledSong {
   }
   if (rootStatements.length)
     channels.unshift(
-      compileChannel("main", rootStatements, globalInstrument, diagnostics),
+      compileChannel("main", rootStatements, globalInstrument, globalVolume, diagnostics),
     );
   if (!channels.length)
-    channels.push({ name: "main", instrument: globalInstrument, clips: [] });
+    channels.push({ name: "main", instrument: globalInstrument, volume: globalVolume, clips: [] });
   
   return { tempo, channels, diagnostics };
 }
@@ -81,9 +92,11 @@ function compileChannel(
   name: string,
   statements: StatementNode[],
   inheritedInstrument: string,
+  inheritedVolume: number,
   diagnostics: Diagnostic[],
 ): CompiledChannel {
   let instrument = inheritedInstrument;
+  let volume = inheritedVolume;
   const patterns = new Map<string, StatementNode[]>();
   const clips = new Map<string, CompiledClip>();
   const plays: StatementNode[] = [];
@@ -99,6 +112,15 @@ function compileChannel(
           `Instrumento desconocido "${statement.name}".`,
         );
       else instrument = statement.name;
+    } else if (statement.type === "Volume") {
+      if (!isValidVolume(statement.db))
+        add(
+          diagnostics,
+          statement,
+          "INVALID_VOLUME",
+          "El volumen debe estar entre -60 y 12 dB.",
+        );
+      else volume = statement.db;
     } else if (statement.type === "Pattern") {
       if (patterns.has(statement.name))
         add(
@@ -164,7 +186,11 @@ function compileChannel(
         "warning",
       ),
     );
-  return { name, instrument, clips: result };
+  return { name, instrument, volume, clips: result };
+}
+
+function isValidVolume(db: number): boolean {
+  return Number.isFinite(db) && db >= -60 && db <= 12;
 }
 
 function compileClip(node: ClipNode, diagnostics: Diagnostic[]): CompiledClip {

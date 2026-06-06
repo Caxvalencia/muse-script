@@ -18,6 +18,7 @@ describe("MuseScript autocomplete", () => {
   it("suggests instruments and durations contextually", () => {
     expect(suggestions("instrument Pol")).toContain("PolySynth");
     expect(suggestions("C4 1/")).toContain("1/4");
+    expect(suggestions("volume -")).toContain("-14");
   });
 
   it("suggests theory values", () => {

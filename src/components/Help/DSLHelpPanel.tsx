@@ -1,6 +1,7 @@
 const rows = [
   ["tempo 120", "Define BPM (30–300)"],
   ["instrument PolySynth", "Elige el sintetizador"],
+  ["volume -12", "Ajusta el volumen del canal en dB"],
   ["C4 1/4", "Toca una nota"],
   ["[C4 E4 G4] 1/2", "Toca un acorde"],
   ["rest 1/8", "Añade silencio"],

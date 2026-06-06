@@ -41,6 +41,22 @@ play harmony`);
     expect(song.channels[0].clips[0].notes[0]).toBe("@progression:C4 major|I V vi IV");
   });
 
+  it("compiles and validates channel volume in decibels", () => {
+    const song = compileSource(`volume -6
+channel bass {
+ volume -14
+ instrument FMSynth
+ C2 1/4
+}`);
+    expect(song.channels[0].volume).toBe(-14);
+
+    const invalid = compileSource(`channel loud {
+ volume 40
+ C4 1/4
+}`);
+    expect(invalid.diagnostics.map((item) => item.code)).toContain("INVALID_VOLUME");
+  });
+
   it("reports semantic errors", () => {
     const song = compileSource(`tempo 900
 instrument Piano

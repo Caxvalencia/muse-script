@@ -15,6 +15,7 @@ type ExpectedToken =
   | "instrument"
   | "pattern"
   | "tempo"
+  | "volume"
   | null;
 
 interface MuseScriptHighlightState {
@@ -25,7 +26,7 @@ interface MuseScriptHighlightState {
 
 const DEFINITION_KEYWORDS = new Set(["channel", "clip"]);
 const CONTROL_KEYWORDS = new Set(["play", "loop"]);
-const CONFIG_KEYWORDS = new Set(["tempo", "instrument"]);
+const CONFIG_KEYWORDS = new Set(["tempo", "instrument", "volume"]);
 const CLIP_PROPERTIES = new Set([
   "notes",
   "subdiv",
@@ -105,6 +106,8 @@ const parser: StreamParser<MuseScriptHighlightState> = {
         return PATTERN.test(word) ? "musePattern" : "invalid";
       if (expected === "tempo")
         return /^\d+$/.test(word) ? "number" : "invalid";
+      if (expected === "volume")
+        return /^-?\d+(?:\.\d+)?$/.test(word) ? "number" : "invalid";
     }
 
     if (word === "pattern") {
@@ -130,6 +133,10 @@ const parser: StreamParser<MuseScriptHighlightState> = {
       state.expected = "tempo";
       return "keyword";
     }
+    if (word === "volume") {
+      state.expected = "volume";
+      return "keyword";
+    }
     if (word === "notes") {
       state.notesLine = true;
       return "propertyName";
@@ -151,7 +158,7 @@ const parser: StreamParser<MuseScriptHighlightState> = {
     if (CHORD_NAME.test(word) && (state.notesLine || state.theoryLine))
       return "string";
     if (PATTERN.test(word)) return "musePattern";
-    if (/^\d+$/.test(word)) return "number";
+    if (/^-?\d+(?:\.\d+)?$/.test(word)) return "number";
     return "variableName";
   },
   languageData: {

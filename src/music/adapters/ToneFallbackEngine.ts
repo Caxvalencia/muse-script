@@ -21,7 +21,7 @@ export class ToneFallbackEngine implements MusicEngine {
     this.setTempo(song.tempo);
 
     for (const channel of song.channels) {
-      const instrument = createInstrument(channel.instrument);
+      const instrument = createInstrument(channel.instrument, channel.volume);
       this.instruments.push(instrument);
       for (const clip of channel.clips.filter((candidate) => candidate.play)) {
         if (clip.events?.length) {

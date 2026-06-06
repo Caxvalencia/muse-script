@@ -6,9 +6,10 @@ export interface MuseInstrument {
   dispose(): void;
 }
 
-export function createInstrument(name: string): MuseInstrument {
+export function createInstrument(name: string, volume = 0): MuseInstrument {
   if (name === "MembraneSynth") {
     const node = new Tone.MembraneSynth().toDestination();
+    node.volume.value = volume;
     return {
       trigger: (notes, duration, time) => { if (notes[0]) node.triggerAttackRelease(notes[0], duration, time); },
       release: () => node.triggerRelease(),
@@ -20,6 +21,7 @@ export function createInstrument(name: string): MuseInstrument {
     : name === "FMSynth"
       ? new Tone.PolySynth(Tone.FMSynth).toDestination()
       : new Tone.PolySynth(Tone.Synth).toDestination();
+  node.volume.value = volume;
   return {
     trigger: (notes, duration, time) => node.triggerAttackRelease(notes, duration, time),
     release: () => node.releaseAll(),

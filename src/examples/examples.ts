@@ -847,4 +847,199 @@ channel shimmer {
   play ultraviolet
 }`,
   },
+  {
+    name: "25 · Final",
+    description: "Final: sesión Scribbletune original traducida a 10 escenas y 17 canales",
+    code: `// Final: traducción de la sesión original de Scribbletune
+// Conserva los 17 nombres y la estructura de entrada de sus 10 escenas.
+// JZZ, Soundfont y WebMidi usan sintetizadores internos en esta versión.
+tempo 138
+
+channel Kick {
+  instrument MembraneSynth
+  volume -14
+  clip Kick {
+    notes C2
+    pattern ------------------------------------------------xxxxxxxxRxxxxxxxxxxxxxxxRxxxxxxxxxxxxxxxRxxxxxxxxxxxxxxxRxxxxxxxxxxxxxxxRxxxxxxxxxxxxxxxRxxxxxxxxxxxxxxxRxxxxxxx
+    subdiv 16n
+  }
+  play Kick
+}
+
+channel Bass {
+  instrument FMSynth
+  volume -16
+  clip Bass {
+    notes scale D2 minor
+    pattern -------------------------------------------------xxx-xRR-xxx-xRR-xxx-xRR-xxx-xRR-x-R-x-R-x-R-x-R-xxx-xRR-xxx-xRR-xxx-xRR-xxx-xRR-xxx-xRR-xxx-xRR-xxx-xRR-xxx-xRR
+    subdiv 16n
+  }
+  play Bass
+}
+
+channel Ch {
+  instrument MembraneSynth
+  volume -12
+  clip Ch {
+    notes D3
+    pattern ----------------xxxxxxxxRxxxxxxxxxxxxxxxRxxxxxxxxxxxxxxxRxxxxxxxxxxxxxxxRxxxxxxxxxxxxxxxRxxxxxxx----------------xxxxxxxxRxxxxxxxxxxxxxxxRxxxxxxxxxxxxxxxRxxxxxxx
+    subdiv 16n
+  }
+  play Ch
+}
+
+channel Oh {
+  instrument MembraneSynth
+  volume -14
+  clip Oh {
+    notes F#3
+    pattern -------------------------------------------------x-xR-x-xR-x-xR--x-xR-x-xR-x-xR--x-xR-x-xR-x-xR----------------------------------x-xR-x-xR-x-xR--x-xR-x-xR-x-xR-
+    subdiv 16n
+  }
+  play Oh
+}
+
+channel Oh2 {
+  instrument MembraneSynth
+  volume -18
+  clip Oh2 {
+    notes A#3
+    pattern -----------------------------------------------------------------x-RxR-R-x-RxR-R-x-RxR-R-x-RxR-R---------------------------------x-RxR-R-x-RxR-R-x-RxR-R-x-RxR-R
+    subdiv 16n
+  }
+  play Oh2
+}
+
+channel Clap {
+  instrument MembraneSynth
+  volume -8
+  clip Clap {
+    notes G3
+    pattern ---------------------------------x-x-x-xR-x-x-x--x-x-x-xR-x-x-x--x-x-x-xR-x-x-x--x-x-x-xR-x-x-x--x-x-x-xR-x-x-x--x-x-x-xR-x-x-x--x-x-x-xR-x-x-x--x-x-x-xR-x-x-x-
+    subdiv 16n
+  }
+  play Clap
+}
+
+channel Acid {
+  instrument FMSynth
+  volume -12
+  clip Acid {
+    notes scale D3 minor
+    pattern -----------------------------------------------------------------x-x-x-x-x-x-x-x--------------------------------------------------------------------------------
+    subdiv 16n
+  }
+  play Acid
+}
+
+channel Fx1 {
+  instrument Synth
+  volume -6
+  clip Fx1 {
+    notes D5
+    pattern -----x--------x------x--------x------x--------x------x--------x------x--------x------x--------x-----------------------------------------------------------------
+    subdiv 16n
+  }
+  play Fx1
+}
+
+channel Fx3 {
+  instrument Synth
+  volume -18
+  clip Fx3 {
+    notes A5
+    pattern ---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x----------------------------------------------------------------
+    subdiv 16n
+  }
+  play Fx3
+}
+
+channel Impact {
+  instrument MembraneSynth
+  volume -2
+  clip Impact {
+    notes C2
+    pattern x-------x---------------------------------------x-------x-------x-------x-------------------------------------------------------x-------x-----------------------
+    subdiv 16n
+  }
+  play Impact
+}
+
+channel Piano {
+  instrument PolySynth
+  volume -18
+  clip Piano {
+    notes arp Dm Dm Dm BbM Am Am FM CM Dm Dm Dm BbM Gm Gm BbM CM
+    pattern ----------------------------------------------------------------------------------------------------------------xxxxxxxxxxxxxxxx----------------xxxxxxxxxxxxxxxx
+    subdiv 16n
+  }
+  play Piano
+}
+
+channel Saw {
+  instrument AMSynth
+  volume -12
+  clip Saw {
+    notes arp Dm BbM Am FM
+    pattern --------------------------------------------------------------------------------------------------------------------------------xxx-x-x--xxxxx-xxxxxxxxxxxxxxxxx
+    subdiv 16n
+  }
+  play Saw
+}
+
+channel Pad {
+  instrument PolySynth
+  volume -20
+  clip Pad {
+    notes progression D3 minor i VI i III
+    pattern ------------------------------------------------------------------------------------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx----------------xxxxxxxxxxxxxxxx
+    subdiv 16n
+  }
+  play Pad
+}
+
+channel Synth {
+  instrument FMSynth
+  volume -20
+  clip Synth {
+    notes progression D3 minor i VI i III
+    pattern ------------------------------------------------------------------------------------------------------------------------------------------------xxxxxxxxxxxxxxxx
+    subdiv 16n
+  }
+  play Synth
+}
+
+channel JZZ {
+  instrument AMSynth
+  volume -20
+  clip JZZ {
+    notes arp Dm Dm Dm BbM Am Am FM CM Dm Dm Dm BbM Gm Gm BbM CM
+    pattern ----------------------------------------------------------------------------------------------------------------xxxxxxxxxxxxxxxxxxx-x-x--xxxxx-xxxxxxxxxxxxxxxxx
+    subdiv 16n
+  }
+  play JZZ
+}
+
+channel Soundfont {
+  instrument AMSynth
+  volume -20
+  clip Soundfont {
+    notes arp Dm Dm Dm BbM Am Am FM CM Dm Dm Dm BbM Gm Gm BbM CM
+    pattern ----------------------------------------------------------------------------------------------------------------xxxxxxxxxxxxxxxxxxx-x-x--xxxxx-xxxxxxxxxxxxxxxxx
+    subdiv 16n
+  }
+  play Soundfont
+}
+
+channel WebMidi {
+  instrument AMSynth
+  volume -20
+  clip WebMidi {
+    notes arp Dm Dm Dm BbM Am Am FM CM Dm Dm Dm BbM Gm Gm BbM CM
+    pattern ----------------------------------------------------------------------------------------------------------------xxxxxxxxxxxxxxxxxxx-x-x--xxxxx-xxxxxxxxxxxxxxxxx
+    subdiv 16n
+  }
+  play WebMidi
+}`,
+  },
 ];

@@ -33,11 +33,12 @@ channel bass {
 - Clips compatibles con patterns de Scribbletune.
 - Escalas, progresiones y arpegios.
 - Canciones con múltiples canales e instrumentos.
+- Volumen independiente por canal mediante decibelios.
 - Reproducción, stop, restart, auto-play y tempo en vivo.
 - Diagnósticos con línea, columna y código de error.
 - Vista del AST y de la canción compilada.
 - Exportación MIDI para secuencias de eventos explícitos.
-- 24 ejemplos ordenados desde cero, pasando por melodías de dominio público,
+- 25 ejemplos ordenados desde cero, pasando por melodías de dominio público,
   hasta canciones expertas.
 - Funcionamiento completamente frontend, sin backend.
 

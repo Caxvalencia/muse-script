@@ -38,7 +38,7 @@ export function SongTimeline({ song, playing, tempo }: Props) {
           {tracks.map(({ channel, clip }, index) => (
             <div className="timeline-label" key={`${channel.name}-${clip.name}`}>
               <span className={`track-icon ${TRACK_COLORS[index % TRACK_COLORS.length]}`}><AudioWaveform aria-hidden="true" /></span>
-              <span><b>{clip.name}</b><small>{channel.name} · {channel.instrument}</small></span>
+              <span><b>{clip.name}</b><small>{channel.name} · {channel.instrument} · {channel.volume} dB</small></span>
             </div>
           ))}
         </div>
