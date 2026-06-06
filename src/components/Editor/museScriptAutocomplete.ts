@@ -69,8 +69,8 @@ export function museScriptCompletionSource(context: CompletionContext): Completi
   if (/^volume\s*$/.test(beforeWord)) {
     return result(word.from, valueOptions(["-20", "-18", "-16", "-14", "-12", "-8", "-6", "-2", "0"], "constant", "Volumen en dB"));
   }
-  if (/^subdiv\s*$/.test(beforeWord)) {
-    return result(word.from, valueOptions(subdivisions, "constant", "Subdivisión del clip"));
+  if (/^(?:subdiv|dur)\s*$/.test(beforeWord)) {
+    return result(word.from, valueOptions(subdivisions, "constant", beforeWord === "dur" ? "Duración del sonido" : "Subdivisión del clip"));
   }
   if (/^play\s*$/.test(beforeWord)) {
     return result(word.from, definitions(source));
@@ -87,28 +87,28 @@ export function museScriptCompletionSource(context: CompletionContext): Completi
   if (/^chord\s*$/.test(beforeWord)) {
     return result(word.from, valueOptions(notes, "constant", "Raíz del acorde"));
   }
-  if (/^notes\s*$/.test(beforeWord)) {
+  if (/^(?:notes|randomNotes)\s*$/.test(beforeWord)) {
     return result(word.from, [
       ...valueOptions(["scale", "progression", "arp"], "function", "Generador teórico"),
       ...valueOptions(notes, "constant", "Nota"),
     ]);
   }
-  if (/^notes\s+scale\s*$/.test(beforeWord) || /^notes\s+progression\s*$/.test(beforeWord)) {
+  if (/^(?:notes|randomNotes)\s+scale\s*$/.test(beforeWord) || /^(?:notes|randomNotes)\s+progression\s*$/.test(beforeWord)) {
     return result(word.from, valueOptions(notes, "constant", "Tónica con octava"));
   }
-  if (/^notes\s+scale\s+[A-G](?:#|b)?[0-8]\s*$/.test(beforeWord)) {
+  if (/^(?:notes|randomNotes)\s+scale\s+[A-G](?:#|b)?[0-8]\s*$/.test(beforeWord)) {
     return result(word.from, valueOptions(scales, "enum", "Nombre de escala"));
   }
-  if (/^notes\s+progression\s+[A-G](?:#|b)?[0-8]\s*$/.test(beforeWord)) {
+  if (/^(?:notes|randomNotes)\s+progression\s+[A-G](?:#|b)?[0-8]\s*$/.test(beforeWord)) {
     return result(word.from, valueOptions(scales, "enum", "Modo de la progresión"));
   }
-  if (/^notes\s+progression\s+[A-G](?:#|b)?[0-8]\s+\w+\s/.test(fullLine)) {
+  if (/^(?:notes|randomNotes)\s+progression\s+[A-G](?:#|b)?[0-8]\s+\w+\s/.test(fullLine)) {
     return result(word.from, valueOptions(romans, "enum", "Grado armónico"));
   }
-  if (/^notes\s+arp\s/.test(fullLine)) {
+  if (/^(?:notes|randomNotes)\s+arp\s/.test(fullLine)) {
     return result(word.from, valueOptions(chordNames, "constant", "Acorde para arpegio"));
   }
-  if (/^notes\s+/.test(fullLine)) {
+  if (/^(?:notes|randomNotes)\s+/.test(fullLine)) {
     return result(word.from, valueOptions(notes, "constant", "Nota del clip"));
   }
   if (/^pattern\s*$/.test(beforeWord)) {

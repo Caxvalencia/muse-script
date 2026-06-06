@@ -142,11 +142,25 @@ play riff
 Propiedades:
 
 - `notes`: fuente de notas o expresión teórica.
+- `randomNotes`: pool separado que usa cada símbolo `R`.
 - `pattern`: ritmo Scribbletune.
 - `subdiv`: duración de cada paso.
+- `dur`: duración del sonido disparado, independiente de `subdiv`.
 
 Subdivisiones válidas: `1m`, `2m`, `3m`, `4m`, `1n`, `2n`, `4n`, `8n`,
 `16n`, `32n`.
+
+Ejemplo con notas aleatorias y duración corta:
+
+```txt
+clip bass {
+  notes D2
+  randomNotes scale D2 minor
+  pattern -xxx-xRR
+  subdiv 16n
+  dur 32n
+}
+```
 
 ## Lenguaje de patterns de clips
 

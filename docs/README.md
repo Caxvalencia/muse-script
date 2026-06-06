@@ -8,8 +8,9 @@ MuseScript.
 1. [Inicio rápido](getting-started.md): instalación, ejecución y primeros pasos.
 2. [Tutorial de cero a experto](tutorial.md): recorrido progresivo por el DSL.
 3. [Referencia del DSL](dsl-reference.md): todos los comandos y valores válidos.
-4. [Interfaz, reproducción y MIDI](playback-and-midi.md): controles de la app.
-5. [Resolución de problemas](troubleshooting.md): errores comunes y soluciones.
+4. [Cobertura de Scribbletune](scribbletune-coverage.md): soporte y pendientes.
+5. [Interfaz, reproducción y MIDI](playback-and-midi.md): controles de la app.
+6. [Resolución de problemas](troubleshooting.md): errores comunes y soluciones.
 
 ## Para contribuidores
 
@@ -23,4 +24,4 @@ MuseScript.
 Si nunca has usado MuseScript, comienza con
 [Inicio rápido](getting-started.md) y continúa con el
 [Tutorial](tutorial.md). Los ejemplos incluidos dentro de la aplicación están
-ordenados del nivel `01` al `14`.
+ordenados del nivel `01` al `25`.

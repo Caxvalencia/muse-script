@@ -15,7 +15,7 @@ export function CompiledPreview({ song, playing, tempo }: { song: CompiledSong; 
                 <span className={clip.play ? "clip-playing" : ""}>{clip.play ? <Play aria-hidden="true" /> : <Circle aria-hidden="true" />}</span>
                 <b>{clip.name}</b>
                 <code>{clip.pattern}</code>
-                <small>{clip.subdiv}</small>
+                <small title={clip.dur ? `Paso ${clip.subdiv}, sonido ${clip.dur}` : `Paso y sonido ${clip.subdiv}`}>{clip.dur ? `${clip.subdiv}/${clip.dur}` : clip.subdiv}</small>
               </div>
             ))}
           </div>

@@ -164,5 +164,5 @@ Para una canción completa:
 6. Usa `R` con moderación para variación aleatoria.
 
 Estudia los ejemplos originales `20 · Champion's Pulse` a
-`24 · Acid Dreamstate` y termina con `25 · Final`, una traducción de una sesión
-Scribbletune de 10 escenas y 17 canales.
+`24 · Acid Dreamstate` y termina con `25 · Final`, una homologación de una
+sesión Scribbletune de 10 escenas, 17 canales y 73 clips no vacíos.

@@ -199,6 +199,8 @@ function compileClip(node: ClipNode, diagnostics: Diagnostic[]): CompiledClip {
     (p) => p.type === "ScribblePatternProperty",
   );
   const subdivProp = node.properties.find((p) => p.type === "SubdivProperty");
+  const durProp = node.properties.find((p) => p.type === "DurProperty");
+  const randomNotesProp = node.properties.find((p) => p.type === "RandomNotesProperty");
   const notes =
     notesProp?.type === "NotesProperty"
       ? resolveNotes(notesProp.value, node, diagnostics)
@@ -209,6 +211,11 @@ function compileClip(node: ClipNode, diagnostics: Diagnostic[]): CompiledClip {
       : "x".repeat(Math.max(notes.length, 1));
   const subdiv =
     subdivProp?.type === "SubdivProperty" ? subdivProp.value : "4n";
+  const dur = durProp?.type === "DurProperty" ? durProp.value : undefined;
+  const randomNotes =
+    randomNotesProp?.type === "RandomNotesProperty"
+      ? resolveNotes(randomNotesProp.value, node, diagnostics)
+      : undefined;
   const patternError = validateScribblePattern(pattern);
   if (patternError)
     add(diagnostics, node, "INVALID_SCRIBBLE_PATTERN", patternError);
@@ -219,6 +226,13 @@ function compileClip(node: ClipNode, diagnostics: Diagnostic[]): CompiledClip {
       "INVALID_SUBDIV",
       `Subdivisión inválida "${subdiv}".`,
     );
+  if (dur && !SUBDIVS.includes(dur))
+    add(
+      diagnostics,
+      node,
+      "INVALID_DURATION",
+      `Duración inválida "${dur}".`,
+    );
   if (!notes.length)
     add(
       diagnostics,
@@ -226,7 +240,7 @@ function compileClip(node: ClipNode, diagnostics: Diagnostic[]): CompiledClip {
       "INVALID_NOTES",
       `El clip "${node.name}" no contiene notas válidas.`,
     );
-  return { name: node.name, notes, pattern, subdiv, play: false };
+  return { name: node.name, notes, pattern, subdiv, dur, randomNotes, play: false };
 }
 
 function resolveNotes(

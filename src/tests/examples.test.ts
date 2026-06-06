@@ -37,4 +37,33 @@ describe("bundled examples", () => {
       WebMidi: -20,
     });
   });
+
+  it("preserves supported Scribbletune clip properties in Final", () => {
+    const example = examples.find((candidate) => candidate.name === "25 · Final")!;
+    const song = compile(parseDSL(example.code).ast);
+    const clips = Object.fromEntries(song.channels.map((channel) => [channel.name, channel.clips[0]]));
+
+    expect(clips.Bass).toMatchObject({ dur: "32n", randomNotes: ["E2", "F2", "G2", "A2", "Bb2", "C3"] });
+    expect(clips.Oh.dur).toBe("32n");
+    expect(clips.Clap.dur).toBe("8n");
+    expect(clips.Fx1.dur).toBe("1m");
+    expect(clips.Pad.dur).toBe("2m");
+  });
+
+  it("preserves Final's non-empty scene clips and representative patterns", () => {
+    const example = examples.find((candidate) => candidate.name === "25 · Final")!;
+    const song = compile(parseDSL(example.code).ast);
+    const channels = Object.fromEntries(song.channels.map((channel) => [channel.name, channel]));
+
+    expect(song.channels.flatMap((channel) => channel.clips)).toHaveLength(73);
+    expect(channels.Kick.clips).toHaveLength(7);
+    expect(channels.Ch.clips).toHaveLength(8);
+    expect(channels.Acid.clips).toHaveLength(1);
+    expect(channels.Bass.clips.find((clip) => clip.name === "Bass_scene_05")).toMatchObject({
+      notes: ["E2"],
+      pattern: "[-xxx][-xRR]",
+    });
+    expect(channels.Saw.clips.find((clip) => clip.name === "Saw_scene_10")?.pattern).toBe("[xx][xx][xx][x[xx]]");
+    expect(channels.WebMidi.clips.find((clip) => clip.play)?.name).toBe("WebMidi_scene_10");
+  });
 });

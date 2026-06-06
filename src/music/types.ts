@@ -12,6 +12,8 @@ export interface CompiledClip {
   notes: Array<string | string[]>;
   pattern: string;
   subdiv: string;
+  dur?: string;
+  randomNotes?: Array<string | string[]>;
   events?: MusicEvent[];
   play: boolean;
 }

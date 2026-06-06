@@ -104,10 +104,22 @@ export interface SubdivPropertyNode extends BaseNode {
   value: string;
 }
 
+export interface RandomNotesPropertyNode extends BaseNode {
+  type: "RandomNotesProperty";
+  value: NotesExpression;
+}
+
+export interface DurPropertyNode extends BaseNode {
+  type: "DurProperty";
+  value: string;
+}
+
 export type ClipPropertyNode =
   | NotesPropertyNode
   | ScribblePatternPropertyNode
-  | SubdivPropertyNode;
+  | SubdivPropertyNode
+  | RandomNotesPropertyNode
+  | DurPropertyNode;
 
 export type StatementNode =
   | TempoNode

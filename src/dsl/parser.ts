@@ -90,10 +90,14 @@ class Parser {
       const key = this.advance();
       if (key.value === "notes") {
         properties.push({ type: "NotesProperty", value: this.parseNotesExpression(), loc: key.loc });
+      } else if (key.value === "randomNotes") {
+        properties.push({ type: "RandomNotesProperty", value: this.parseNotesExpression(), loc: key.loc });
       } else if (key.value === "pattern") {
         properties.push({ type: "ScribblePatternProperty", value: this.lineValues().join(""), loc: key.loc });
       } else if (key.value === "subdiv") {
         properties.push({ type: "SubdivProperty", value: this.consumeValue("INVALID_SUBDIV", "Falta la subdivisión.").value, loc: key.loc });
+      } else if (key.value === "dur") {
+        properties.push({ type: "DurProperty", value: this.consumeValue("INVALID_DURATION", "Falta la duración.").value, loc: key.loc });
       } else if (key.value === "arp" && this.check("lbrace")) {
         properties.push({ type: "NotesProperty", value: this.parseAdvancedArp(), loc: key.loc });
       } else {

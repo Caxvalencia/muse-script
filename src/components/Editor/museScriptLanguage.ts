@@ -29,7 +29,9 @@ const CONTROL_KEYWORDS = new Set(["play", "loop"]);
 const CONFIG_KEYWORDS = new Set(["tempo", "instrument", "volume"]);
 const CLIP_PROPERTIES = new Set([
   "notes",
+  "randomNotes",
   "subdiv",
+  "dur",
   "chords",
   "count",
   "order",
@@ -137,7 +139,7 @@ const parser: StreamParser<MuseScriptHighlightState> = {
       state.expected = "volume";
       return "keyword";
     }
-    if (word === "notes") {
+    if (word === "notes" || word === "randomNotes") {
       state.notesLine = true;
       return "propertyName";
     }

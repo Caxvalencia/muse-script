@@ -25,7 +25,7 @@ export class ToneFallbackEngine implements MusicEngine {
       this.instruments.push(instrument);
       for (const clip of channel.clips.filter((candidate) => candidate.play)) {
         if (clip.events?.length) {
-          const ticksPerStep = Tone.Transport.PPQ * 4 / 32;
+          const ticksPerStep = (Tone.Transport.PPQ * 4) / 32;
           const events = clip.events.map((event) => ({
             time: `${event.startStep * ticksPerStep}i`,
             notes: event.notes,
@@ -33,20 +33,44 @@ export class ToneFallbackEngine implements MusicEngine {
             rest: event.type === "rest",
           }));
           const part = new Tone.Part((time, event) => {
-            if (!event.rest && event.notes.length) instrument.trigger(event.notes, event.duration, time);
+            if (!event.rest && event.notes.length)
+              instrument.trigger(event.notes, event.duration, time);
           }, events).start(0);
           part.loop = true;
-          part.loopEnd = Math.max(...clip.events.map((event) => event.startStep + 1)) * Tone.Transport.PPQ * 4 / 32;
+          part.loopEnd =
+            (Math.max(...clip.events.map((event) => event.startStep + 1)) *
+              Tone.Transport.PPQ *
+              4) /
+            32;
           this.sequences.push(part);
         } else {
-          const notes = clip.notes.filter((note) => typeof note !== "string" || !note.startsWith("@"));
+          const notes = clip.notes.filter(
+            (note) => typeof note !== "string" || !note.startsWith("@"),
+          );
+          const randomNotes =
+            clip.randomNotes?.filter(
+              (note) => typeof note !== "string" || !note.startsWith("@"),
+            ) ?? notes;
           let noteIndex = 0;
-          const sequence = new Tone.Sequence((time, symbol: string) => {
-            if ((symbol === "x" || symbol === "R") && notes.length) {
-              const note = symbol === "R" ? notes[Math.floor(Math.random() * notes.length)] : notes[noteIndex++ % notes.length];
-              instrument.trigger(Array.isArray(note) ? note : [note], clip.subdiv, time);
-            }
-          }, flattenPattern(clip.pattern), clip.subdiv as Tone.Unit.Time).start(0);
+          const sequence = new Tone.Sequence(
+            (time, symbol: string) => {
+              const pool = symbol === "R" ? randomNotes : notes;
+
+              if ((symbol === "x" || symbol === "R") && pool.length) {
+                const note =
+                  symbol === "R"
+                    ? pool[Math.floor(Math.random() * pool.length)]
+                    : notes[noteIndex++ % notes.length];
+                instrument.trigger(
+                  Array.isArray(note) ? note : [note],
+                  clip.dur ?? clip.subdiv,
+                  time,
+                );
+              }
+            },
+            flattenPattern(clip.pattern),
+            clip.subdiv as Tone.Unit.Time,
+          ).start(0);
           sequence.loop = true;
           this.sequences.push(sequence);
         }

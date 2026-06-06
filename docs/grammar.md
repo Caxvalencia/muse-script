@@ -33,8 +33,10 @@ NamedChord      = "chord" Pitch Quality Duration ;
 Block           = "{" Statement* "}" ;
 
 ClipProperty    = "notes" NotesExpression
+                | "randomNotes" NotesExpression
                 | "pattern" ScribblePattern
                 | "subdiv" Subdivision
+                | "dur" Subdivision
                 | AdvancedArp ;
 
 NotesExpression = Pitch+

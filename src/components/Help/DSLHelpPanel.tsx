@@ -11,6 +11,8 @@ const rows = [
   ["notes scale C4 major", "Genera una escala"],
   ["notes progression C4 major I V vi IV", "Genera acordes"],
   ["notes arp CM FM GM CM", "Genera arpegio"],
+  ["randomNotes scale D2 minor", "Define el pool usado por R"],
+  ["dur 32n", "Controla cuánto dura cada sonido"],
 ];
 
 export function DSLHelpPanel() {

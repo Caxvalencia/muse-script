@@ -109,6 +109,7 @@ channel harmony {
 - [Inicio rápido](docs/getting-started.md)
 - [Tutorial de cero a experto](docs/tutorial.md)
 - [Referencia completa del DSL](docs/dsl-reference.md)
+- [Cobertura de Scribbletune](docs/scribbletune-coverage.md)
 - [Interfaz, reproducción y MIDI](docs/playback-and-midi.md)
 - [Arquitectura y contribución](docs/architecture.md)
 - [Guía de contribución](docs/contributing.md)

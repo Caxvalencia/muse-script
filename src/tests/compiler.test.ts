@@ -57,6 +57,20 @@ channel bass {
     expect(invalid.diagnostics.map((item) => item.code)).toContain("INVALID_VOLUME");
   });
 
+  it("compiles Scribbletune randomNotes and dur clip properties", () => {
+    const song = compileSource(`clip bass {
+ notes D2
+ randomNotes scale D2 minor
+ pattern -xRR
+ subdiv 16n
+ dur 32n
+}`);
+    expect(song.channels[0].clips[0]).toMatchObject({
+      dur: "32n",
+      randomNotes: ["@scale:D2 minor"],
+    });
+  });
+
   it("reports semantic errors", () => {
     const song = compileSource(`tempo 900
 instrument Piano
