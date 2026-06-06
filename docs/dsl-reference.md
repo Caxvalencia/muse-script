@@ -4,6 +4,10 @@ El editor incluye resaltado sintáctico específico de MuseScript. Los comandos,
 notas, duraciones, patterns, teoría musical, instrumentos y nombres definidos
 usan colores distintos. Los tokens visualmente inválidos aparecen subrayados.
 
+También incluye autocompletado contextual para comandos, instrumentos, notas,
+duraciones, subdivisiones, teoría musical y referencias usadas por `play`.
+Presiona `Ctrl+Space` para abrir las sugerencias manualmente.
+
 ## Comentarios
 
 ```txt

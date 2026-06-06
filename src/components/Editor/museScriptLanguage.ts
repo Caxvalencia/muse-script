@@ -1,14 +1,23 @@
 import {
   HighlightStyle,
   StreamLanguage,
+  StreamParser,
+  StringStream,
   syntaxHighlighting,
-  type StreamParser,
-  type StringStream,
+  type,
 } from "@codemirror/language";
 import { EditorView } from "@codemirror/view";
 import { tags } from "@lezer/highlight";
 
-type ExpectedToken = "definition" | "reference" | "instrument" | "pattern" | "tempo" | null;
+import { museScriptAutocomplete } from "./museScriptAutocomplete";
+
+type ExpectedToken =
+  | "definition"
+  | "reference"
+  | "instrument"
+  | "pattern"
+  | "tempo"
+  | null;
 
 interface MuseScriptHighlightState {
   expected: ExpectedToken;
@@ -19,10 +28,32 @@ interface MuseScriptHighlightState {
 const DEFINITION_KEYWORDS = new Set(["channel", "clip"]);
 const CONTROL_KEYWORDS = new Set(["play", "loop"]);
 const CONFIG_KEYWORDS = new Set(["tempo", "instrument"]);
-const CLIP_PROPERTIES = new Set(["notes", "subdiv", "chords", "count", "order"]);
+const CLIP_PROPERTIES = new Set([
+  "notes",
+  "subdiv",
+  "chords",
+  "count",
+  "order",
+]);
 const THEORY_KEYWORDS = new Set(["scale", "progression", "arp", "chord"]);
-const INSTRUMENTS = new Set(["Synth", "AMSynth", "FMSynth", "PolySynth", "MembraneSynth"]);
-const SCALE_NAMES = new Set(["major", "minor", "ionian", "aeolian", "dorian", "phrygian", "lydian", "mixolydian", "locrian"]);
+const INSTRUMENTS = new Set([
+  "Synth",
+  "AMSynth",
+  "FMSynth",
+  "PolySynth",
+  "MembraneSynth",
+]);
+const SCALE_NAMES = new Set([
+  "major",
+  "minor",
+  "ionian",
+  "aeolian",
+  "dorian",
+  "phrygian",
+  "lydian",
+  "mixolydian",
+  "locrian",
+]);
 
 const NOTE = /^(?:C|C#|Db|D|D#|Eb|E|F|F#|Gb|G|G#|Ab|A|A#|Bb|B)[0-8]$/;
 const CHORD_NAME = /^(?:[A-G](?:#|b)?)(?:M|m|maj7|m7|M7|m7b5|M#5)?(?:_\d)?$/;
@@ -70,13 +101,18 @@ const parser: StreamParser<MuseScriptHighlightState> = {
       state.expected = null;
       if (expected === "definition") return "museDefinition";
       if (expected === "reference") return "museReference";
-      if (expected === "instrument") return INSTRUMENTS.has(word) ? "museInstrument" : "invalid";
-      if (expected === "pattern") return PATTERN.test(word) ? "musePattern" : "invalid";
-      if (expected === "tempo") return /^\d+$/.test(word) ? "number" : "invalid";
+      if (expected === "instrument")
+        return INSTRUMENTS.has(word) ? "museInstrument" : "invalid";
+      if (expected === "pattern")
+        return PATTERN.test(word) ? "musePattern" : "invalid";
+      if (expected === "tempo")
+        return /^\d+$/.test(word) ? "number" : "invalid";
     }
 
     if (word === "pattern") {
-      const isNamedPattern = /^[A-Za-z_][\w-]*\s*\{/.test(stream.string.slice(stream.pos).trim());
+      const isNamedPattern = /^[A-Za-z_][\w-]*\s*\{/.test(
+        stream.string.slice(stream.pos).trim(),
+      );
       state.expected = isNamedPattern ? "definition" : "pattern";
       return isNamedPattern ? "definitionKeyword" : "propertyName";
     }
@@ -114,7 +150,8 @@ const parser: StreamParser<MuseScriptHighlightState> = {
     if (DURATION.test(word) || SUBDIVISION.test(word)) return "museDuration";
     if (ROMAN.test(word) && state.theoryLine) return "museRoman";
     if (SCALE_NAMES.has(word) && state.theoryLine) return "museScale";
-    if (CHORD_NAME.test(word) && (state.notesLine || state.theoryLine)) return "string";
+    if (CHORD_NAME.test(word) && (state.notesLine || state.theoryLine))
+      return "string";
     if (PATTERN.test(word)) return "musePattern";
     if (/^\d+$/.test(word)) return "number";
     return "variableName";
@@ -133,7 +170,11 @@ const museScriptHighlightStyle = HighlightStyle.define([
   { tag: tags.definitionKeyword, color: "#ff7ab2", fontWeight: "700" },
   { tag: tags.controlKeyword, color: "#ff9e64", fontWeight: "600" },
   { tag: tags.propertyName, color: "#7dcfff" },
-  { tag: tags.definition(tags.variableName), color: "#f5d76e", fontWeight: "700" },
+  {
+    tag: tags.definition(tags.variableName),
+    color: "#f5d76e",
+    fontWeight: "700",
+  },
   { tag: tags.labelName, color: "#f5d76e" },
   { tag: tags.typeName, color: "#bb9af7" },
   { tag: tags.atom, color: "#73daca", fontWeight: "600" },
@@ -163,9 +204,10 @@ const museScriptEditorTheme = EditorView.theme(
       borderLeftColor: "#c099ff",
       borderLeftWidth: "2px",
     },
-    "&.cm-focused .cm-selectionBackground, .cm-selectionBackground, ::selection": {
-      backgroundColor: "#4f3b6d99",
-    },
+    "&.cm-focused .cm-selectionBackground, .cm-selectionBackground, ::selection":
+      {
+        backgroundColor: "#4f3b6d99",
+      },
     ".cm-activeLine": {
       backgroundColor: "#171923",
     },
@@ -191,4 +233,5 @@ export const museScriptEditorExtensions = [
   museScriptLanguage,
   syntaxHighlighting(museScriptHighlightStyle),
   museScriptEditorTheme,
+  museScriptAutocomplete,
 ];

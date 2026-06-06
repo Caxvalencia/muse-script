@@ -34,6 +34,10 @@ G4 1/2
 La compilación sucede 500 ms después de cada cambio. Si **Auto-play** está
 activo y no hay errores, la versión anterior se detiene y comienza la nueva.
 
+El editor muestra sugerencias mientras escribes. También puedes abrirlas
+manualmente con `Ctrl+Space`. Selecciona con las flechas, acepta con `Enter` y
+usa `Tab` para recorrer los campos de un snippet.
+
 ## Usar los ejemplos
 
 El selector contiene una ruta ordenada:

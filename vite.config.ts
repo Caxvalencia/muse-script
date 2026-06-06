@@ -8,6 +8,7 @@ export default defineConfig({
       "@codemirror/state",
       "@codemirror/view",
       "@codemirror/language",
+      "@codemirror/autocomplete",
       "@lezer/common",
       "@lezer/highlight",
     ],
