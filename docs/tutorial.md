@@ -163,5 +163,5 @@ Para una canción completa:
 5. Crea leads desde una escala.
 6. Usa `R` con moderación para variación aleatoria.
 
-Estudia los ejemplos `13 · Neon Circuit` y `14 · Acid Dreamstate`.
-
+Estudia los ejemplos originales `20 · Champion's Pulse` a
+`24 · Acid Dreamstate`.

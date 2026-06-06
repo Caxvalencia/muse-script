@@ -217,7 +217,476 @@ play chords
 play arpeggio`,
   },
   {
-    name: "13 · Neon Circuit",
+    name: "13 · Ode to Joy — Beethoven",
+    description: "Dominio público: tema principal adaptado para MuseScript",
+    code: `// Ode to Joy — Ludwig van Beethoven
+tempo 108
+instrument PolySynth
+
+E4 1/4
+E4 1/4
+F4 1/4
+G4 1/4
+G4 1/4
+F4 1/4
+E4 1/4
+D4 1/4
+C4 1/4
+C4 1/4
+D4 1/4
+E4 1/4
+E4 1/2
+D4 1/4
+D4 1/2
+
+E4 1/4
+E4 1/4
+F4 1/4
+G4 1/4
+G4 1/4
+F4 1/4
+E4 1/4
+D4 1/4
+C4 1/4
+C4 1/4
+D4 1/4
+E4 1/4
+D4 1/2
+C4 1/2`,
+  },
+  {
+    name: "14 · Für Elise — Beethoven",
+    description: "Dominio público: apertura reconocible adaptada",
+    code: `// Für Elise — Ludwig van Beethoven
+tempo 120
+instrument Synth
+
+E5 1/16
+D#5 1/16
+E5 1/16
+D#5 1/16
+E5 1/16
+B4 1/16
+D5 1/16
+C5 1/16
+A4 1/8
+rest 1/16
+C4 1/16
+E4 1/16
+A4 1/16
+B4 1/8
+rest 1/16
+E4 1/16
+G#4 1/16
+B4 1/16
+C5 1/8
+rest 1/16
+E4 1/16
+E5 1/16
+D#5 1/16
+E5 1/16
+D#5 1/16
+E5 1/16
+B4 1/16
+D5 1/16
+C5 1/16
+A4 1/8`,
+  },
+  {
+    name: "15 · Twinkle, Twinkle, Little Star",
+    description: "Tradicional: melodía infantil completa y sencilla",
+    code: `// Twinkle, Twinkle, Little Star
+tempo 96
+instrument PolySynth
+
+C4 1/4
+C4 1/4
+G4 1/4
+G4 1/4
+A4 1/4
+A4 1/4
+G4 1/2
+F4 1/4
+F4 1/4
+E4 1/4
+E4 1/4
+D4 1/4
+D4 1/4
+C4 1/2
+G4 1/4
+G4 1/4
+F4 1/4
+F4 1/4
+E4 1/4
+E4 1/4
+D4 1/2
+G4 1/4
+G4 1/4
+F4 1/4
+F4 1/4
+E4 1/4
+E4 1/4
+D4 1/2
+C4 1/4
+C4 1/4
+G4 1/4
+G4 1/4
+A4 1/4
+A4 1/4
+G4 1/2
+F4 1/4
+F4 1/4
+E4 1/4
+E4 1/4
+D4 1/4
+D4 1/4
+C4 1/2`,
+  },
+  {
+    name: "16 · Happy Birthday to You",
+    description: "Dominio público: canción tradicional de cumpleaños",
+    code: `// Happy Birthday to You
+tempo 100
+instrument PolySynth
+
+G4 1/8
+G4 1/8
+A4 1/4
+G4 1/4
+C5 1/4
+B4 1/2
+G4 1/8
+G4 1/8
+A4 1/4
+G4 1/4
+D5 1/4
+C5 1/2
+G4 1/8
+G4 1/8
+G5 1/4
+E5 1/4
+C5 1/4
+B4 1/4
+A4 1/2
+F5 1/8
+F5 1/8
+E5 1/4
+C5 1/4
+D5 1/4
+C5 1/2`,
+  },
+  {
+    name: "17 · Greensleeves",
+    description: "Tradicional inglesa: primera sección adaptada",
+    code: `// Greensleeves — canción tradicional inglesa
+tempo 92
+instrument PolySynth
+
+A4 1/4
+C5 1/2
+D5 1/4
+E5 1/4
+F5 1/2
+E5 1/4
+D5 1/2
+B4 1/4
+G4 1/2
+A4 1/4
+B4 1/4
+C5 1/2
+A4 1/4
+A4 1/2
+G#4 1/4
+A4 1/2
+B4 1/4
+C5 1/2
+D5 1/4
+E5 1/4
+F5 1/2
+E5 1/4
+D5 1/2
+B4 1/4
+G4 1/2
+A4 1/4
+B4 1/4
+C5 1/4
+B4 1/4
+A4 1/2
+G#4 1/4
+A4 1/2`,
+  },
+  {
+    name: "18 · Scarborough Fair",
+    description: "Tradicional inglesa: melodía folk contemplativa",
+    code: `// Scarborough Fair — canción tradicional inglesa
+tempo 88
+instrument PolySynth
+
+D4 1/2
+D4 1/4
+A4 1/2
+A4 1/4
+E4 1/4
+F4 1/4
+E4 1/4
+D4 1/2
+rest 1/4
+A4 1/2
+C5 1/4
+D5 1/2
+C5 1/4
+A4 1/4
+B4 1/4
+G4 1/4
+A4 1/2
+rest 1/4
+D5 1/2
+D5 1/4
+C5 1/2
+A4 1/4
+A4 1/4
+G4 1/4
+F4 1/4
+E4 1/2
+D4 1/2`,
+  },
+  {
+    name: "19 · Frère Jacques",
+    description: "Tradicional francesa: canon sencillo y educativo",
+    code: `// Frère Jacques — canción tradicional francesa
+tempo 112
+instrument PolySynth
+
+pattern melody {
+  C4 1/4
+  D4 1/4
+  E4 1/4
+  C4 1/4
+  C4 1/4
+  D4 1/4
+  E4 1/4
+  C4 1/4
+  E4 1/4
+  F4 1/4
+  G4 1/2
+  E4 1/4
+  F4 1/4
+  G4 1/2
+  G4 1/8
+  A4 1/8
+  G4 1/8
+  F4 1/8
+  E4 1/4
+  C4 1/4
+  G4 1/8
+  A4 1/8
+  G4 1/8
+  F4 1/8
+  E4 1/4
+  C4 1/4
+  C4 1/4
+  G3 1/4
+  C4 1/2
+  C4 1/4
+  G3 1/4
+  C4 1/2
+}
+
+play melody`,
+  },
+  {
+    name: "20 · Champion's Pulse",
+    description: "Experto: riff original de rock motivacional de estadio",
+    code: `// Champion's Pulse
+// Riff original de entrenamiento con entrada dramática
+tempo 112
+
+channel arena_drums {
+  instrument MembraneSynth
+  clip heavy_steps {
+    notes C2 G2 C2 A2
+    pattern x---x---x-x-x---
+    subdiv 16n
+  }
+  play heavy_steps
+}
+
+channel driving_bass {
+  instrument FMSynth
+  clip forward_motion {
+    notes E2 E2 G2 A2 E2 D2 E2 B1
+    pattern x-x---x-x-x---x-
+    subdiv 8n
+  }
+  play forward_motion
+}
+
+channel power_chords {
+  instrument PolySynth
+  clip stadium_chords {
+    notes E3 B3 E4 G3 D4 G4 A3 E4 A4
+    pattern x---x---x---x---
+    subdiv 4n
+  }
+  play stadium_chords
+}
+
+channel guitar_riff {
+  instrument FMSynth
+  clip champions_call {
+    notes E4 G4 A4 E4 D4 E4 B3 D4 E4 G4 B4 A4 G4 E4 D4 B3
+    pattern x--x-x---x-x--x-x--x-x---x-x--x-
+    subdiv 16n
+  }
+  play champions_call
+}
+
+channel crowd_answer {
+  instrument Synth
+  clip rise_up {
+    notes B4 E5 G5 A5 G5 E5 D5 B4
+    pattern --------x---x-------x---x-------
+    subdiv 16n
+  }
+  play rise_up
+}`,
+  },
+  {
+    name: "21 · Pixel Kingdom Run",
+    description: "Experto: aventura de plataformas retro 8-bit original",
+    code: `// Pixel Kingdom Run
+// Tema original de plataformas retro, alegre y saltarín
+tempo 152
+
+channel jump_beat {
+  instrument MembraneSynth
+  clip tiny_drums {
+    notes C2 G2 C2 A2
+    pattern x---x-x-x---x-x-
+    subdiv 16n
+  }
+  play tiny_drums
+}
+
+channel bouncing_bass {
+  instrument Synth
+  clip underground_steps {
+    notes C3 G2 A2 E3 F3 C3 G2 B2
+    pattern x-x-x-x-x-x-x-x-
+    subdiv 8n
+  }
+  play underground_steps
+}
+
+channel pixel_chords {
+  instrument PolySynth
+  clip sunny_blocks {
+    notes progression C4 major I vi IV V
+    pattern x---x---x---x---
+    subdiv 4n
+  }
+  play sunny_blocks
+}
+
+channel hero_lead {
+  instrument FMSynth
+  clip brave_run {
+    notes E5 G5 C6 G5 A5 C6 E6 D6 B5 G5 D6 B5 C6 G5 E5 C5
+    pattern xx-x-xxx-x-xx-xxx-x-xx-x-xxx-x-x
+    subdiv 16n
+  }
+  play brave_run
+}
+
+channel sidekick {
+  instrument Synth
+  clip cheerful_answer {
+    notes C5 E5 G5 E5 F5 A5 C6 A5 G5 B5 D6 B5 E5 G5 C6 G5
+    pattern --x-x---x-x---x---x-x---x-x---x-
+    subdiv 16n
+  }
+  play cheerful_answer
+}
+
+channel coin_sparkles {
+  instrument Synth
+  clip secret_rewards {
+    notes C6 E6 G6 C7 A6 F6 D6 G6
+    pattern -------x-------x---x-------x-x---
+    subdiv 16n
+  }
+  play secret_rewards
+}`,
+  },
+  {
+    name: "22 · River of Grace",
+    description: "Experto: folk gospel cálido, suave y con movimiento",
+    code: `// River of Grace
+// Folk gospel cálido para respirar, agradecer y seguir adelante
+tempo 104
+
+channel gentle_pulse {
+  instrument Synth
+  clip soft_steps {
+    notes C3 G3 A3 F3
+    pattern x-------x-------x-------x-------
+    subdiv 8n
+  }
+  play soft_steps
+}
+
+channel upright_bass {
+  instrument Synth
+  clip steady_ground {
+    notes C2 G2 A2 F2
+    pattern x-------x-------x-------x-------
+    subdiv 8n
+  }
+  play steady_ground
+}
+
+channel chapel {
+  instrument PolySynth
+  clip grace_chords {
+    notes progression C3 major I V vi IV
+    pattern x-------x-------x-------x-------
+    subdiv 8n
+  }
+  play grace_chords
+}
+
+channel folk_guitar {
+  instrument Synth
+  clip morning_picking {
+    notes C4 E4 G4 E4 G3 B3 D4 B3 A3 C4 E4 C4 F3 A3 C4 A3
+    pattern x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-
+    subdiv 8n
+  }
+  play morning_picking
+}
+
+channel hymn {
+  instrument PolySynth
+  clip open_road {
+    notes E4 G4 A4 G4 E4 D4 C4 E4 G4 A4 C5 B4 A4 G4 E4 D4
+    pattern x---x---x-------x---x---x-------x---
+    subdiv 8n
+  }
+  play open_road
+}
+
+channel light {
+  instrument PolySynth
+  clip quiet_amen {
+    notes C5 G5 A5 E5 F5 C5 G5 D5
+    pattern --------x---------------x---------------x-------
+    subdiv 8n
+  }
+  play quiet_amen
+}`,
+  },
+  {
+    name: "23 · Neon Circuit",
     description: "Experto: canción electrónica completa de siete canales",
     code: `// Neon Circuit: electrónica multicapa en Re menor
 tempo 126
@@ -293,7 +762,7 @@ channel sparkles {
 }`,
   },
   {
-    name: "14 · Acid Dreamstate",
+    name: "24 · Acid Dreamstate",
     description: "Experto: trance psicodélico hipnótico de ocho canales",
     code: `// Acid Dreamstate: trance psicodélico en Fa# menor
 tempo 138

@@ -41,7 +41,8 @@ El selector contiene una ruta ordenada:
 - `01–05`: fundamentos.
 - `06–09`: clips y teoría musical.
 - `10–12`: composición avanzada.
-- `13–14`: canciones completas.
+- `13–19`: melodías conocidas de dominio público.
+- `20–24`: canciones originales completas.
 
 Seleccionar un ejemplo reemplaza el editor. **Reset** restaura el ejemplo
 seleccionado y **Copiar** copia su código.
@@ -62,4 +63,3 @@ válidos pero incompletos.
 
 Continúa con el [tutorial de cero a experto](tutorial.md) o consulta directamente
 la [referencia del DSL](dsl-reference.md).
-

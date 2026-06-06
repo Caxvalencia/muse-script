@@ -29,7 +29,8 @@ channel bass {
 - Diagnósticos con línea, columna y código de error.
 - Vista del AST y de la canción compilada.
 - Exportación MIDI para secuencias de eventos explícitos.
-- 14 ejemplos ordenados desde cero hasta canciones expertas.
+- 24 ejemplos ordenados desde cero, pasando por melodías de dominio público,
+  hasta canciones expertas.
 - Funcionamiento completamente frontend, sin backend.
 
 ## Requisitos
