@@ -8,6 +8,10 @@ MuseScript es un playground de live coding musical para navegador. Permite
 escribir música con un DSL legible, ver sus errores y representación compilada,
 y reproducirla en vivo usando Scribbletune y Tone.js.
 
+MuseScript utiliza [Scribbletune](https://scribbletune.com/documentation) para
+la generación de escalas, progresiones, arpegios y patterns musicales. Tone.js
+se encarga de programar y reproducir el audio en el navegador.
+
 ```txt
 tempo 126
 
@@ -99,6 +103,7 @@ channel harmony {
 
 ## Documentación
 
+- [Documentación oficial de Scribbletune](https://scribbletune.com/documentation)
 - [Índice de documentación](docs/README.md)
 - [Inicio rápido](docs/getting-started.md)
 - [Tutorial de cero a experto](docs/tutorial.md)
@@ -148,3 +153,10 @@ Los recursos visuales originales se encuentran en:
 - Scribbletune se usa para teoría musical y Tone.js para scheduling moderno.
 
 Consulta [troubleshooting](docs/troubleshooting.md) para detalles.
+
+## Librerías principales
+
+- [Scribbletune](https://scribbletune.com/documentation): generación musical,
+  teoría, acordes, escalas, progresiones, arpegios y patterns.
+- [Tone.js](https://tonejs.github.io/): scheduling, instrumentos y reproducción
+  mediante Web Audio API.
