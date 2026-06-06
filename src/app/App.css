@@ -46,6 +46,14 @@ select { color: #d2d5dc; background: #191b22; border: 1px solid #30333d; border-
 .cm-scroller { font-family: "DM Mono", monospace !important; line-height: 1.75 !important; }
 .cm-gutters { background: #0d0e13 !important; border-right: 1px solid #22242c !important; }
 .editor-footer, .compile-status { display: flex; gap: 15px; padding: 9px 15px; color: #6f7480; background: #121319; border-top: 1px solid #272932; font: 10px "DM Mono"; }
+.editor-footer { justify-content: space-between; align-items: center; }
+.editor-metrics, .syntax-legend { display: flex; gap: 13px; align-items: center; }
+.syntax-legend span::before { content: ""; display: inline-block; width: 5px; height: 5px; margin-right: 5px; border-radius: 50%; background: currentColor; vertical-align: middle; }
+.legend-command { color: #c792ea; }
+.legend-note { color: #73daca; }
+.legend-duration { color: #e0af68; }
+.legend-pattern { color: #ff9e64; }
+.legend-theory { color: #2ac3de; }
 .output-panel nav { display: flex; gap: 3px; padding: 10px; border-bottom: 1px solid #272932; }
 .output-panel nav button { flex: 1; background: transparent; border: 0; border-radius: 7px; color: #777c88; font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
 .output-panel nav button.selected { color: #ead9ff; background: #292033; }
@@ -75,4 +83,4 @@ select { color: #d2d5dc; background: #191b22; border: 1px solid #30333d; border-
 .compile-status { justify-content: space-between; color: #74dfbb; }
 .compile-status.failed { color: #ff9992; }
 @media (max-width: 1000px) { main { grid-template-columns: 1fr; height: auto; } .panel { min-height: 600px; } .header-stats { display: none; } }
-@media (max-width: 650px) { .app-shell { padding: 12px; } .controls { flex-wrap: wrap; } .toggle { margin-left: 0; } .panel-heading { align-items: flex-start; gap: 10px; flex-direction: column; } main { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 650px) { .app-shell { padding: 12px; } .controls { flex-wrap: wrap; } .toggle { margin-left: 0; } .panel-heading { align-items: flex-start; gap: 10px; flex-direction: column; } main { grid-template-columns: minmax(0, 1fr); } .syntax-legend { display: none; } }

@@ -1,5 +1,9 @@
 # Referencia del DSL
 
+El editor incluye resaltado sintáctico específico de MuseScript. Los comandos,
+notas, duraciones, patterns, teoría musical, instrumentos y nombres definidos
+usan colores distintos. Los tokens visualmente inválidos aparecen subrayados.
+
 ## Comentarios
 
 ```txt
@@ -229,4 +233,3 @@ Activa un clip o pattern nombrado. Una referencia inexistente genera
 | `INVALID_SCRIBBLE_PATTERN` | Pattern nativo inválido |
 | `INVALID_SUBDIV` | Subdivisión no soportada |
 | `UNKNOWN_PATTERN` | `play` apunta a un nombre inexistente |
-

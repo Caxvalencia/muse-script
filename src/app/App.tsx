@@ -82,7 +82,16 @@ export default function App() {
             </div>
           </div>
           <div className="editor-wrap"><MusicCodeEditor value={source} onChange={setSource} /></div>
-          <div className="editor-footer"><span>{source.split("\n").length} líneas</span><span>{source.length} caracteres</span><span>Compilación 500 ms</span></div>
+          <div className="editor-footer">
+            <div className="editor-metrics"><span>{source.split("\n").length} líneas</span><span>{source.length} caracteres</span><span>Compilación 500 ms</span></div>
+            <div className="syntax-legend" aria-label="Leyenda de sintaxis">
+              <span className="legend-command">comando</span>
+              <span className="legend-note">nota</span>
+              <span className="legend-duration">duración</span>
+              <span className="legend-pattern">pattern</span>
+              <span className="legend-theory">teoría</span>
+            </div>
+          </div>
         </section>
 
         <section className="output-panel panel">

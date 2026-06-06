@@ -1,5 +1,7 @@
 import CodeMirror from "@uiw/react-codemirror";
 
+import { museScriptEditorExtensions } from "./museScriptLanguage";
+
 interface Props {
   value: string;
   onChange: (value: string) => void;
@@ -10,9 +12,15 @@ export function MusicCodeEditor({ value, onChange }: Props) {
     <CodeMirror
       value={value}
       height="100%"
-      theme="dark"
+      theme="none"
+      extensions={museScriptEditorExtensions}
       onChange={onChange}
-      basicSetup={{ lineNumbers: true, foldGutter: true, bracketMatching: true, highlightActiveLine: true }}
+      basicSetup={{
+        lineNumbers: true,
+        foldGutter: true,
+        bracketMatching: true,
+        highlightActiveLine: true,
+      }}
       style={{ height: "100%", fontSize: 14 }}
     />
   );

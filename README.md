@@ -20,7 +20,7 @@ channel bass {
 
 ## Características
 
-- Editor de código musical con compilación automática.
+- Editor de código musical con resaltado sintáctico y compilación automática.
 - Notas, silencios, acordes, loops y secciones nombradas.
 - Clips compatibles con patterns de Scribbletune.
 - Escalas, progresiones y arpegios.
