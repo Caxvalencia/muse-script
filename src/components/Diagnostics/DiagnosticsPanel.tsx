@@ -1,7 +1,8 @@
+import { CircleCheck } from "lucide-react";
 import type { Diagnostic } from "../../dsl/diagnostics";
 
 export function DiagnosticsPanel({ diagnostics }: { diagnostics: Diagnostic[] }) {
-  if (!diagnostics.length) return <div className="empty-state ok">✓ Sin errores. Lista para sonar.</div>;
+  if (!diagnostics.length) return <div className="empty-state ok"><CircleCheck aria-hidden="true" /><span>Sin errores. Lista para sonar.</span></div>;
   return (
     <div className="diagnostics">
       {diagnostics.map((item, index) => (

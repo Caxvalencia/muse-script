@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="src/assets/slogan.png" alt="MuseScript — Live Coding Music DSL" width="760">
+</div>
+
 # MuseScript
 
 MuseScript es un playground de live coding musical para navegador. Permite
@@ -121,6 +125,18 @@ Source DSL
 
 La lógica del DSL no depende de React ni de los motores musicales. La
 reproducción está aislada mediante el puerto `MusicEngine`.
+
+## Identidad visual
+
+<p align="center">
+  <img src="src/assets/logo.png" alt="Logo de MuseScript" width="420">
+</p>
+
+Los recursos visuales originales se encuentran en:
+
+- [`src/assets/logo.png`](src/assets/logo.png): logo principal.
+- [`src/assets/slogan.png`](src/assets/slogan.png): composición con nombre,
+  descripción y slogan.
 
 ## Estado y limitaciones
 

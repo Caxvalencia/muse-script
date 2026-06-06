@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
+import { BookOpen, Braces, CircleAlert, Copy, ListMusic, RotateCcw, Waves } from "lucide-react";
+import logoUrl from "../assets/logo-mark.png";
 import { PlaybackControls } from "../components/Controls/PlaybackControls";
 import { DiagnosticsPanel } from "../components/Diagnostics/DiagnosticsPanel";
 import { MusicCodeEditor } from "../components/Editor/MusicCodeEditor";
@@ -12,6 +14,13 @@ import { exportMidi } from "../music/exportMidi";
 import "./App.css";
 
 type Tab = "diagnostics" | "compiled" | "ast" | "help";
+
+const tabDetails = {
+  compiled: { icon: ListMusic, label: "Song" },
+  diagnostics: { icon: CircleAlert, label: "Issues" },
+  ast: { icon: Braces, label: "AST" },
+  help: { icon: BookOpen, label: "Help" },
+} satisfies Record<Tab, { icon: typeof ListMusic; label: string }>;
 
 export default function App() {
   const [source, setSource] = useLocalStorage("musescript-source", examples[0].code);
@@ -46,7 +55,7 @@ export default function App() {
       <div className="ambient-orb orb-three" />
 
       <header className="topbar glass-surface">
-        <div className="brand"><span className="logo"><span>M</span></span><div><h1>MuseScript</h1><p>Live coding music playground</p></div></div>
+        <div className="brand"><span className="logo"><img src={logoUrl} alt="" /></span><div><h1>MuseScript</h1><p>Live coding music playground</p></div></div>
         <div className="header-stats">
           <span className="stat-pill"><i className={playback.audioActive ? "live" : ""} />{playback.audioActive ? "Audio ready" : "Audio locked"}</span>
           <span className="stat-pill"><small>Tempo</small><b>{runtimeTempo}</b> BPM</span>
@@ -54,26 +63,10 @@ export default function App() {
         </div>
       </header>
 
-      <PlaybackControls
-        {...playback}
-        autoPlay={autoPlay}
-        tempo={runtimeTempo}
-        hasErrors={hasErrors}
-        onActivate={() => void playback.activateAudio()}
-        onPlay={() => void playback.play()}
-        onStop={playback.stop}
-        onRestart={() => void playback.restart()}
-        onAutoPlay={setAutoPlay}
-        onTempo={changeTempo}
-        onExport={() => exportMidi(result.song)}
-      />
-
-      {playback.audioError && <div className="audio-error">{playback.audioError}</div>}
-
       <main>
         <section className="editor-panel panel glass-surface">
           <div className="panel-heading">
-            <div className="panel-title"><span className="panel-icon">⌁</span><div><span className="eyebrow">SOURCE</span><h2>Composition</h2></div></div>
+            <div className="panel-title"><span className="panel-icon"><Waves aria-hidden="true" /></span><div><span className="eyebrow">SOURCE</span><h2>Composition</h2></div></div>
             <div className="editor-actions">
               <div className="example-picker">
                 <select value={selectedExample} onChange={(event) => selectExample(Number(event.target.value))}>
@@ -81,8 +74,8 @@ export default function App() {
                 </select>
                 <small>{examples[selectedExample].description}</small>
               </div>
-              <button onClick={() => void navigator.clipboard.writeText(source)}>Copiar</button>
-              <button onClick={() => setSource(examples[selectedExample].code)}>Reset</button>
+              <button onClick={() => void navigator.clipboard.writeText(source)}><Copy aria-hidden="true" />Copiar</button>
+              <button onClick={() => setSource(examples[selectedExample].code)}><RotateCcw aria-hidden="true" />Reset</button>
             </div>
           </div>
           <div className="editor-wrap"><MusicCodeEditor value={source} onChange={setSource} /></div>
@@ -98,25 +91,45 @@ export default function App() {
           </div>
         </section>
 
-        <section className="output-panel panel glass-surface">
-          <nav>
-            {(["compiled", "diagnostics", "ast", "help"] as Tab[]).map((item) => (
-              <button className={tab === item ? "selected" : ""} onClick={() => setTab(item)} key={item}>
-                {item === "compiled" ? "Song" : item === "diagnostics" ? `Issues ${result.diagnostics.length || ""}` : item.toUpperCase()}
-              </button>
-            ))}
-          </nav>
-          <div className="output-content">
-            {tab === "compiled" && <CompiledPreview song={result.song} />}
-            {tab === "diagnostics" && <DiagnosticsPanel diagnostics={result.diagnostics} />}
-            {tab === "ast" && <pre>{JSON.stringify(result.ast, null, 2)}</pre>}
-            {tab === "help" && <DSLHelpPanel />}
-          </div>
-          <div className={`compile-status ${hasErrors ? "failed" : ""}`}>
-            <span>{hasErrors ? "Compilación detenida" : "Compilación correcta"}</span>
-            <span>{result.song.channels.length} canales · {activeClips} clips activos</span>
-          </div>
-        </section>
+        <aside className="right-workspace">
+          <PlaybackControls
+            {...playback}
+            autoPlay={autoPlay}
+            tempo={runtimeTempo}
+            hasErrors={hasErrors}
+            onActivate={() => void playback.activateAudio()}
+            onPlay={() => void playback.play()}
+            onStop={playback.stop}
+            onRestart={() => void playback.restart()}
+            onAutoPlay={setAutoPlay}
+            onTempo={changeTempo}
+            onExport={() => exportMidi(result.song)}
+          />
+          {playback.audioError && <div className="audio-error">{playback.audioError}</div>}
+          <section className="output-panel panel glass-surface">
+            <nav>
+              {(["compiled", "diagnostics", "ast", "help"] as Tab[]).map((item) => (
+                <button className={tab === item ? "selected" : ""} onClick={() => setTab(item)} key={item}>
+                  {(() => {
+                    const Icon = tabDetails[item].icon;
+                    const count = item === "diagnostics" && result.diagnostics.length ? ` ${result.diagnostics.length}` : "";
+                    return <><Icon aria-hidden="true" />{tabDetails[item].label}{count}</>;
+                  })()}
+                </button>
+              ))}
+            </nav>
+            <div className="output-content">
+              {tab === "compiled" && <CompiledPreview song={result.song} playing={playback.playing} tempo={runtimeTempo} />}
+              {tab === "diagnostics" && <DiagnosticsPanel diagnostics={result.diagnostics} />}
+              {tab === "ast" && <pre>{JSON.stringify(result.ast, null, 2)}</pre>}
+              {tab === "help" && <DSLHelpPanel />}
+            </div>
+            <div className={`compile-status ${hasErrors ? "failed" : ""}`}>
+              <span>{hasErrors ? "Compilación detenida" : "Compilación correcta"}</span>
+              <span>{result.song.channels.length} canales · {activeClips} clips activos</span>
+            </div>
+          </section>
+        </aside>
       </main>
     </div>
   );

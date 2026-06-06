@@ -1,3 +1,5 @@
+import { Download, Play, RotateCcw, Square, Volume2 } from "lucide-react";
+
 interface Props {
   audioActive: boolean;
   playing: boolean;
@@ -19,11 +21,12 @@ export function PlaybackControls(props: Props) {
       <div className="control-group transport-group">
         <button className="primary audio-button" onClick={props.onActivate}>
           <span className={`status-dot ${props.audioActive ? "active" : ""}`} />
+          <Volume2 aria-hidden="true" />
           {props.audioActive ? "Audio activo" : "Activar audio"}
         </button>
-        <button className="icon-button play-button" title="Play" onClick={props.onPlay} disabled={!props.audioActive || props.hasErrors}><span>▶</span><small>Play</small></button>
-        <button className="icon-button" title="Stop" onClick={props.onStop} disabled={!props.playing}><span>■</span><small>Stop</small></button>
-        <button className="icon-button" title="Restart" onClick={props.onRestart} disabled={!props.audioActive || props.hasErrors}><span>↻</span><small>Restart</small></button>
+        <button className="icon-button play-button" title="Play" onClick={props.onPlay} disabled={!props.audioActive || props.hasErrors}><Play aria-hidden="true" /><small>Play</small></button>
+        <button className="icon-button" title="Stop" onClick={props.onStop} disabled={!props.playing}><Square aria-hidden="true" /><small>Stop</small></button>
+        <button className="icon-button" title="Restart" onClick={props.onRestart} disabled={!props.audioActive || props.hasErrors}><RotateCcw aria-hidden="true" /><small>Restart</small></button>
       </div>
       <div className="control-divider" />
       <div className="control-group settings-group">
@@ -36,7 +39,7 @@ export function PlaybackControls(props: Props) {
           <span />
           <b>Auto-play</b>
         </label>
-        <button className="export-button" onClick={props.onExport}><span>⇩</span> Exportar MIDI</button>
+        <button className="export-button" onClick={props.onExport}><Download aria-hidden="true" />Exportar MIDI</button>
       </div>
     </div>
   );
